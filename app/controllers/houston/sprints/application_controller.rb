@@ -1,4 +1,6 @@
 module Houston::Sprints
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ::ApplicationController
+    layout "houston/sprints/application"
+    helper "houston/sprints/sprint"
   end
 end

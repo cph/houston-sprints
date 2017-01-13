@@ -12,12 +12,18 @@ Houston.config do
   host "houston.test.com"
   mailer_sender "houston@test.com"
 
-  # Houston still hard-codes knowledge of these Roles.
-  # This will eventually be refactored away.
-  roles "Developer", "Tester"
-  project_roles "Maintainer"
-
   # Mount this module on the dummy Houston application.
   use :sprints
+
+  role "Developer" do |team|
+    can :manage, Sprint
+  end
+
+  ticket_types({
+    "Chore"       => "909090",
+    "Feature"     => "8DB500",
+    "Enhancement" => "3383A8",
+    "Bug"         => "C64537"
+  })
 
 end

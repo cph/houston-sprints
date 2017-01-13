@@ -20,7 +20,12 @@ end
 # from other libraries to be shown.
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
+FactoryGirl.factories.clear
+FactoryGirl.definition_file_paths = [File.expand_path("../factories", __FILE__)]
+FactoryGirl.find_definitions
+
 class ActiveSupport::TestCase
+  include FactoryGirl::Syntax::Methods
 
   # Load fixtures from the engine
   self.fixture_path = File.expand_path("../fixtures", __FILE__)

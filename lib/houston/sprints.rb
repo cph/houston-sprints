@@ -30,22 +30,10 @@ module Houston
 
 
   # Add a link to Houston's global navigation
-  #
-  #    add_navigation_renderer :sprints do
-  #      name "Sprints"
-  #      icon "fa-thumbs-up"
-  #      path { Houston::Sprints::Engine.routes.url_helpers.sprints_path }
-  #      ability { |ability| ability.can? :read, Project }
-  #    end
-
-
-  # Add a link to feature that can be turned on for projects
-  #
-  #    add_project_feature :sprints do
-  #      name "Sprints"
-  #      icon "fa-thumbs-up"
-  #      path { |project| Houston::Sprints::Engine.routes.url_helpers.project_sprints_path(project) }
-  #      ability { |ability, project| ability.can? :read, project }
-  #    end
+  Houston.add_navigation_renderer :sprint do
+    name "Sprint"
+    path { Houston::Sprints::Engine.routes.url_helpers.current_sprint_path }
+    ability { |ability| ability.can?(:read, Sprint) }
+  end
 
 end
