@@ -1,5 +1,5 @@
 teams_users_1:
   team: default
-  user: boblail
+  user: admin
   roles:
     - Team Owner
