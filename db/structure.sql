@@ -1017,11 +1017,8 @@ CREATE TABLE tickets (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     remote_id integer,
-    deployment character varying,
-    last_release_at timestamp without time zone,
     expires_at timestamp without time zone,
     extended_attributes hstore DEFAULT ''::hstore NOT NULL,
-    antecedents text[],
     tags character varying[],
     type character varying,
     closed_at timestamp without time zone,
@@ -1029,11 +1026,9 @@ CREATE TABLE tickets (
     reporter_id integer,
     milestone_id integer,
     destroyed_at timestamp without time zone,
-    resolution character varying DEFAULT ''::character varying NOT NULL,
-    first_release_at timestamp without time zone,
     priority character varying DEFAULT 'normal'::character varying NOT NULL,
-    reopened_at timestamp without time zone,
-    prerequisites integer[]
+    props jsonb DEFAULT '{}'::jsonb,
+    due_date date
 );
 
 
@@ -1937,13 +1932,6 @@ CREATE INDEX index_tickets_on_milestone_id ON tickets USING btree (milestone_id)
 
 
 --
--- Name: index_tickets_on_resolution; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_tickets_on_resolution ON tickets USING btree (resolution);
-
-
---
 -- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2239,6 +2227,13 @@ INSERT INTO schema_migrations (version) VALUES
 ('20160916191300'),
 ('20161102012059'),
 ('20161102012231'),
-('20170113164126');
+('20170113164126'),
+('20170113223920'),
+('20170113224431'),
+('20170113225759'),
+('20170113230723'),
+('20170113230944'),
+('20170113231303'),
+('20170113232119');
 
 
