@@ -1,4 +1,4 @@
-class SprintTaskPresenter < TaskPresenter
+class SprintTaskPresenter < Houston::Tickets::TaskPresenter
   attr_reader :sprint, :ends_at
 
   def initialize(sprint, tasks=sprint.tasks)

@@ -6,7 +6,7 @@
     <%= format_sprint_time_frame(@sprint) %>
     <%= link_to @sprint.next do %><i class="fa fa-chevron-right"></i><% end %>
   </small>
-  
+
   <%= render partial: "projects/keyboard_shortcuts" %>
 </h1>
 <% end %>
@@ -32,7 +32,7 @@
         current_user,
         6.weeks.before(@sprint.end_date),
         1.week.before(@sprint.end_date)).to_json %>,
-      openTasks: <%= raw (@open_tasks && TaskPresenter.new(@open_tasks)).to_json %>
+      openTasks: <%= raw (@open_tasks && Houston::Tickets::TaskPresenter.new(@open_tasks)).to_json %>
     }).render();
   });
 </script>

@@ -5,6 +5,10 @@ module Houston
   module Sprints
     extend self
 
+    def dependencies
+      [:tickets]
+    end
+
     def config(&block)
       @configuration ||= Sprints::Configuration.new
       @configuration.instance_eval(&block) if block_given?

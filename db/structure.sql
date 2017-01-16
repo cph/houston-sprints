@@ -392,11 +392,10 @@ CREATE TABLE milestones (
     name character varying NOT NULL,
     tickets_count integer DEFAULT 0,
     completed_at timestamp without time zone,
-    extended_attributes hstore DEFAULT ''::hstore NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     destroyed_at timestamp without time zone,
-    start_date date
+    props jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -619,26 +618,6 @@ CREATE SEQUENCE releases_id_seq
 --
 
 ALTER SEQUENCE releases_id_seq OWNED BY releases.id;
-
-
---
--- Name: releases_tasks; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE releases_tasks (
-    release_id integer,
-    task_id integer
-);
-
-
---
--- Name: releases_tickets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE releases_tickets (
-    release_id integer,
-    ticket_id integer
-);
 
 
 --
@@ -1813,20 +1792,6 @@ CREATE INDEX index_releases_on_search_vector ON releases USING gin (search_vecto
 
 
 --
--- Name: index_releases_tasks_on_release_id_and_task_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_releases_tasks_on_release_id_and_task_id ON releases_tasks USING btree (release_id, task_id);
-
-
---
--- Name: index_releases_tickets_on_release_id_and_ticket_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_releases_tickets_on_release_id_and_ticket_id ON releases_tickets USING btree (release_id, ticket_id);
-
-
---
 -- Name: index_roles_on_user_id_and_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2207,6 +2172,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20151226154901'),
 ('20151226155305'),
 ('20151228183704'),
+('20151228183706'),
 ('20160120145757'),
 ('20160317140151'),
 ('20160419230411'),
@@ -2234,6 +2200,10 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170113230723'),
 ('20170113230944'),
 ('20170113231303'),
-('20170113232119');
+('20170113232119'),
+('20170115003303'),
+('20170115003536'),
+('20170115150643'),
+('20170116002818');
 
 
