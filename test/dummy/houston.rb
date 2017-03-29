@@ -10,6 +10,7 @@ Houston.config do
 
   # Give dummy values to these required fields.
   host "houston.test.com"
+  secret_key_base "c67c5ca8437072b235fd3b95f75490"
   mailer_sender "houston@test.com"
 
   use :tickets do
